@@ -717,7 +717,7 @@ const CFG = {
   facebook: "",            // link completo da página. Vazio esconde.
   // Google Ads: conversão "Clique no WhatsApp (site)". Cole aqui o "send_to" do snippet de evento,
   // no formato "AW-123456789/AbCdEfGh". Vazio = sem rastreamento.
-  adsConversao: "",
+  adsConversao: "AW-10825720153/ppiHCNK1nLIdENnCjaoo",
   msgPadrao: "Olá! Vim pelo site da Barbell e quero saber mais.",
   promoFim: "2026-11-20",  // último dia da Black Barbell
   novaGrade: "2026-11-23"  // a partir deste dia mostra a nova grade e some o aviso
@@ -835,7 +835,7 @@ if (CFG.adsConversao){
   const sc=document.createElement("script");sc.async=true;sc.src="https://www.googletagmanager.com/gtag/js?id="+id;document.head.appendChild(sc);
   window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
   gtag("js",new Date());gtag("config",id);
-  document.querySelectorAll("[data-wpp]").forEach(a=>a.addEventListener("click",()=>gtag("event","conversion",{send_to:CFG.adsConversao})));
+  document.querySelectorAll("[data-wpp]").forEach(a=>a.addEventListener("click",()=>gtag("event","conversion",{send_to:CFG.adsConversao,value:1.0,currency:"BRL"})));
 }
 
 /* Menu e header */
