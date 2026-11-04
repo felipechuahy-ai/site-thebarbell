@@ -10,7 +10,44 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <meta property="og:title" content="Barbell Fitness & Studio">
 <meta property="og:description" content="Cross Training, Hyrox e Studio no Campo Belo. Agende sua aula experimental grátis.">
-<meta property="og:image" content="img/logo_b_icone.png">
+<meta property="og:image" content="https://thebarbell.com.br/img/fachada.jpg">
+<meta property="og:url" content="https://thebarbell.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<link rel="canonical" href="https://thebarbell.com.br/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "Barbell Fitness & Studio",
+  "alternateName": "The Barbell Fitness",
+  "url": "https://thebarbell.com.br/",
+  "image": "https://thebarbell.com.br/img/fachada.jpg",
+  "logo": "https://thebarbell.com.br/img/logo_b_icone.png",
+  "telephone": "+55 11 91672-6616",
+  "priceRange": "R$ 249 – R$ 489 por mês",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua Vieira de Morais, 1320",
+    "addressLocality": "São Paulo",
+    "addressRegion": "SP",
+    "postalCode": "04617-004",
+    "addressCountry": "BR"
+  },
+  "areaServed": "Campo Belo, São Paulo",
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"06:00","closes":"21:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"06:00","closes":"20:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"12:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:30","closes":"11:30"}
+  ],
+  "sameAs": ["https://www.instagram.com/thebar.bell/"],
+  "amenityFeature": [
+    {"@type":"LocationFeatureSpecification","name":"Vestiário com chuveiro","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Café gratuito","value":true}
+  ]
+}
+</script>
 <meta name="theme-color" content="#161616">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -626,7 +663,7 @@ footer img{height:28px;width:auto;opacity:.85}
     </div>
     <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
       <span>© <span id="ano">2026</span> The Barbell Fitness · Todos os direitos reservados.<br>THE BARBELL FITNESS LTDA · CNPJ 46.841.770/0001-68</span>
-      <span><a href="#espaco">Nosso espaço</a> · <a href="#experimental">Agende sua visita</a> · <a href="#contato">Contato</a></span>
+      <span><a href="#espaco">Nosso espaço</a> · <a data-wpp data-msg="Olá! Quero agendar uma visita para conhecer a Barbell." href="#">Agende sua visita</a> · <a href="#contato">Contato</a></span>
     </div>
   </div>
 </footer>
@@ -792,6 +829,11 @@ renderGrade();
  lb.querySelector(".pr").onclick=e=>{e.stopPropagation();ver(i+1)};
  lb.onclick=e=>{if(e.target===lb)lb.classList.remove("on")};
  addEventListener("keydown",e=>{if(!lb.classList.contains("on"))return;if(e.key==="Escape")lb.classList.remove("on");if(e.key==="ArrowLeft")ver(i-1);if(e.key==="ArrowRight")ver(i+1);});}
+
+/* Endereços do site antigo (caso o redirecionamento do servidor não pegue) */
+{const p=decodeURIComponent(location.pathname).toLowerCase().replace(/\/+$/,"");
+ const mapa={"/nosso-espaço":"espaco","/nosso-espaco":"espaco","/contato-1":"contato","/contato":"contato"};
+ if(mapa[p]){history.replaceState(null,"","/#"+mapa[p]);addEventListener("load",()=>document.getElementById(mapa[p]).scrollIntoView());}}
 
 /* Menu e header */
 const hd=document.getElementById("topo"), menu=document.getElementById("menu"), bg=document.getElementById("burger");
