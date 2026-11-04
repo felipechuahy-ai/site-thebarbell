@@ -785,6 +785,8 @@ const CFG = {
   // Google Ads: conversão "Clique no WhatsApp (site)". Cole aqui o "send_to" do snippet de evento,
   // no formato "AW-123456789/AbCdEfGh". Vazio = sem rastreamento.
   adsConversao: "AW-10825720153/ppiHCNK1nLIdENnCjaoo",
+  // Google Analytics 4 (ID de medição). Vazio = sem Analytics.
+  ga4: "G-7103XVCDBX",
   msgPadrao: "Olá! Vim pelo site da Barbell e quero saber mais.",
   promoFim: "2026-11-20",  // último dia da Black Barbell
   novaGrade: "2026-11-23"  // a partir deste dia mostra a nova grade e some o aviso
@@ -896,14 +898,17 @@ renderGrade();
  const mapa={"/nosso-espaço":"espaco","/nosso-espaço-1":"espaco","/nosso-espaco":"espaco","/contato-1":"contato","/contato":"contato","/aula-gratis":"experimental","/modalidades":"modalidades","/horarios":"horarios","/planos":"planos","/gold":"gold"};
  if(mapa[p]){history.replaceState(null,"","/#"+mapa[p]);addEventListener("load",()=>document.getElementById(mapa[p]).scrollIntoView());}}
 
-/* Google Ads: conta o clique no WhatsApp como conversão */
-if (CFG.adsConversao){
-  const id=CFG.adsConversao.split("/")[0];
-  const sc=document.createElement("script");sc.async=true;sc.src="https://www.googletagmanager.com/gtag/js?id="+id;document.head.appendChild(sc);
+/* Google Analytics 4 + conversão do Google Ads (clique no WhatsApp) */
+{const ads=CFG.adsConversao?CFG.adsConversao.split("/")[0]:"";const ids=[CFG.ga4,ads].filter(Boolean);
+ if(ids.length){
+  const sc=document.createElement("script");sc.async=true;sc.src="https://www.googletagmanager.com/gtag/js?id="+ids[0];document.head.appendChild(sc);
   window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
-  gtag("js",new Date());gtag("config",id);
-  document.querySelectorAll("[data-wpp]").forEach(a=>a.addEventListener("click",()=>gtag("event","conversion",{send_to:CFG.adsConversao,value:1.0,currency:"BRL"})));
-}
+  gtag("js",new Date());ids.forEach(id=>gtag("config",id));
+  document.querySelectorAll("[data-wpp]").forEach(a=>a.addEventListener("click",()=>{
+    if(CFG.ga4) gtag("event","generate_lead",{send_to:CFG.ga4,method:"whatsapp",link_text:(a.textContent||"").trim().slice(0,60)});
+    if(CFG.adsConversao) gtag("event","conversion",{send_to:CFG.adsConversao,value:1.0,currency:"BRL"});
+  }));
+ }}
 
 /* Menu e header */
 const hd=document.getElementById("topo"), menu=document.getElementById("menu"), bg=document.getElementById("burger");
