@@ -25,7 +25,6 @@
   "image": "https://thebarbell.com.br/img/fachada.jpg",
   "logo": "https://thebarbell.com.br/img/logo_b_icone.png",
   "telephone": "+55 11 91672-6616",
-  "priceRange": "R$ 249 – R$ 489 por mês",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Rua Vieira de Morais, 1320",
@@ -153,6 +152,12 @@ header.sol{background:rgba(18,18,18,.94);backdrop-filter:blur(10px);border-color
 .familia .wrap{position:relative;z-index:2;width:100%;padding-top:60px;padding-bottom:56px}
 .familia-tx{max-width:560px}
 .familia-tx p{color:#d8d3c9;margin:0 0 22px;font-size:17px}
+.arraste{display:none}
+.aviso-grade{margin:18px 0 0;padding:14px 18px;border:1px solid #3a3428;background:rgba(196,171,126,.08);border-radius:12px;font-size:15px;color:#d6d1c7}
+.aviso-grade b{color:var(--ouro)}
+.pl-tx{color:var(--mut);font-size:15px;margin-bottom:20px}
+.durs{display:flex;gap:8px;flex-wrap:wrap}
+.durs span{border:1px solid #3a3428;border-radius:999px;padding:9px 16px;font:700 17px/1 "Barlow Condensed";letter-spacing:.08em;text-transform:uppercase;color:var(--ouro-cl)}
 /* promo */
 .promo{background:linear-gradient(90deg,#c4ab7e,#e3d2b0 50%,#c4ab7e);color:#151515;padding:0}
 .promo .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:22px;padding-bottom:22px;flex-wrap:wrap}
@@ -341,15 +346,40 @@ footer img{height:28px;width:auto;opacity:.85}
   .grade-box.cel table.grade{display:none}
   .promo strong{font-size:18px}
 }
+/* carrosséis no celular */
+@media (max-width:760px){
+  .arraste{display:block;color:var(--mut);font-size:13px;margin:14px 0 -26px;text-align:right}
+  .mods{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-left:-16px;margin-right:-16px;padding:0 16px 8px;scrollbar-width:none}
+  .mods::-webkit-scrollbar,.galeria::-webkit-scrollbar{display:none}
+  .mod{flex:0 0 84%;scroll-snap-align:center;min-height:0}
+  .mod .foto{height:170px}
+  .galeria{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin-left:-16px;margin-right:-16px;padding:0 16px 6px;scrollbar-width:none}
+  .galeria button{flex:0 0 80%;height:240px;scroll-snap-align:center}
+  .galeria .g2,.galeria .w2{grid-column:auto;grid-row:auto}
+}
 /* grade no celular: lista por dia */
 .grade-cel{display:none}
 @media (max-width:560px){
   .grade-cel{display:block}
-  .dias{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px}
-  .dias button{flex:1;min-width:52px;background:var(--card);border:1px solid var(--line);color:var(--mut);font:700 17px/1 "Barlow Condensed";letter-spacing:.06em;padding:11px 0;border-radius:10px;cursor:pointer}
+  .dias{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px}
+  .dias button{background:var(--card);border:1px solid var(--line);color:var(--mut);font:700 15px/1 "Barlow Condensed";letter-spacing:.04em;padding:10px 0;border-radius:8px;cursor:pointer}
   .dias button.on{background:var(--ouro);border-color:var(--ouro);color:#151515}
-  .lista-dia{margin-top:12px;display:grid;gap:6px}
-  .lista-dia div{display:flex;justify-content:space-between;align-items:center;background:var(--card);border-radius:10px;padding:13px 16px;font:700 20px/1 "Barlow Condensed";letter-spacing:.03em;text-transform:uppercase}
+  .lista-dia{margin-top:10px;display:grid;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .lista-dia div{display:flex;justify-content:space-between;align-items:center;background:var(--card);padding:10px 14px;font:700 17px/1 "Barlow Condensed";letter-spacing:.03em;text-transform:uppercase;border-top:1px solid var(--line)}
+  .lista-dia div:first-child{border-top:0}
+  .fds{flex-direction:column;gap:6px;font-size:16px;margin-top:14px;padding-top:14px}
+  .legenda{grid-template-columns:1fr;gap:6px;font-size:13px;margin-top:12px}
+  .legenda b{font-size:15px}
+  .tabs{display:flex;width:100%}
+  .tabs button{flex:1;padding:11px 8px;font-size:12px}
+  .grade-box{padding:12px;border-radius:14px}
+  .aviso-grade{font-size:14px}
+  .bloco.gold .linha strong{font-size:28px}
+  .durs span{padding:8px 12px;font-size:15px}
+  .passos{gap:10px;margin:30px 0 28px}
+  .passo{display:grid;grid-template-columns:36px 1fr;column-gap:12px;padding:16px 18px}
+  .passo b{grid-row:span 2;font-size:36px}
+  .passo h3{margin:2px 0 4px}
   .lista-dia div span:first-child{color:var(--ouro)}
 }
 </style>
@@ -366,7 +396,7 @@ footer img{height:28px;width:auto;opacity:.85}
       <a href="#planos">Planos</a>
       <a href="#gold">Gold 50+</a>
       <a href="#contato">Contato</a>
-      <a href="#experimental" class="btn btn-ouro">Aula grátis</a>
+      <a class="btn btn-ouro" data-wpp data-msg="Olá! Quero agendar uma aula experimental na Barbell." href="#">Aula grátis</a>
     </nav>
     <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -384,7 +414,7 @@ footer img{height:28px;width:auto;opacity:.85}
       <h1>Treine Hyrox, Cross e Musculação<span>em um só lugar.</span></h1>
       <p>Cross Training, Hyrox e Studio de Musculação Funcional no Campo Belo. Turmas pequenas, aulas de menos de uma hora e uma equipe que acompanha você de perto, do primeiro treino em diante.</p>
       <div class="acoes">
-        <a class="btn btn-ouro" href="#experimental">Agendar aula grátis</a>
+        <a class="btn btn-ouro" data-wpp data-msg="Olá! Quero agendar uma aula experimental na Barbell." href="#">Agendar aula grátis</a>
         <a class="btn btn-linha so-wpp" data-wpp href="#">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3Z"/></svg>
           Falar no WhatsApp</a>
@@ -392,7 +422,7 @@ footer img{height:28px;width:auto;opacity:.85}
       <div class="numeros">
         <div><strong>14</strong><span>alunos no máximo<br>por aula de Cross e Hyrox</span></div>
         <div><strong>3</strong><span>modalidades<br>num só lugar</span></div>
-        <div><strong>6h–21h</strong><span>de segunda<br>a quinta</span></div>
+        <div><strong>7 dias</strong><span>aberto todos os dias<br>da semana</span></div>
       </div>
     </div>
     <div class="hero-fotos">
@@ -410,7 +440,7 @@ footer img{height:28px;width:auto;opacity:.85}
       <strong>Black Barbell · até 20/11</strong>
       <p>Cross e Hyrox pelo preço de uma modalidade, em planos novos ou renovações antecipadas.</p>
     </div>
-    <a class="btn" href="#planos">Ver planos</a>
+    <a class="btn" data-wpp data-msg="Olá! Quero aproveitar a Black Barbell." href="#">Quero aproveitar</a>
   </div>
 </div>
 
@@ -428,7 +458,7 @@ footer img{height:28px;width:auto;opacity:.85}
       <div class="item rev">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></div>
         <h3>Turmas com limite de alunos</h3>
-        <p>Até 14 pessoas no Cross e no Hyrox. No Studio, 4 por aula (8 na GAC).</p>
+        <p>Até 14 alunos no Cross e no Hyrox. No Studio, de 4 a 8 pessoas por aula.</p>
       </div>
       <div class="item rev">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11M6.5 17.5h11M3 9v6M21 9v6M6.5 4v16M17.5 4v16"/></svg></div>
@@ -448,7 +478,7 @@ footer img{height:28px;width:auto;opacity:.85}
     <span class="tag">Comunidade</span>
     <h2>Entre para a <em>família</em> Barbell.</h2>
     <p>Mais do que treinar: aqui você encontra gente que torce por você, todo dia.</p>
-    <a class="btn btn-ouro" href="#experimental">Quero fazer parte</a>
+    <a class="btn btn-ouro" data-wpp data-msg="Olá! Quero agendar uma aula experimental na Barbell." href="#">Quero fazer parte</a>
   </div></div>
 </section>
 
@@ -457,13 +487,14 @@ footer img{height:28px;width:auto;opacity:.85}
     <span class="tag rev">Modalidades</span>
     <h2 class="rev">Escolha seu <em>treino</em>.</h2>
     <p class="lead rev">Aulas de 50 a 60 minutos, com turmas limitadas. Os planos podem incluir Cross, Hyrox ou os dois, e todos incluem o Studio.</p>
+    <p class="arraste">Arraste para o lado →</p>
     <div class="mods">
       <article class="mod rev">
         <div class="foto"><img src="img/cross-box.jpg" alt="Box de Cross Training com corda e rigs" loading="lazy"></div>
         <span class="num">01</span>
         <h3>Cross Training</h3>
         <div class="sub">Condicionamento e força, de forma geral</div>
-        <p>Nossa modalidade principal. Treinos intensos que combinam condicionamento metabólico (Metcon) e técnica. Para quem quer evoluir, perder peso ou ganhar força. É o mesmo estilo de treino do CrossFit, com outro nome porque CrossFit é marca registrada.</p>
+        <p>Nossa modalidade principal. Treinos intensos que combinam condicionamento metabólico (Metcon) e técnica. Para quem quer evoluir, perder peso ou ganhar força.</p>
         <ul><li>Intensidade <b>Alta</b></li><li>Por turma <b>até 14 alunos</b></li></ul>
       </article>
       <article class="mod rev">
@@ -481,7 +512,7 @@ footer img{height:28px;width:auto;opacity:.85}
         <h3>Strength Studio</h3>
         <div class="sub">Musculação funcional, sem máquinas</div>
         <p>Força com peso do corpo e peso livre, numa área separada no andar de cima. Uma aula menos intensa, ótima para quem quer começar com calma ou complementar o Cross e o Hyrox.</p>
-        <ul><li>Intensidade <b>Moderada</b></li><li>Por turma <b>4 alunos (8 na GAC)</b></li></ul>
+        <ul><li>Intensidade <b>Moderada</b></li><li>Por turma <b>de 4 a 8 alunos</b></li></ul>
       </article>
     </div>
     <p class="nota rev"><b>Fins de semana e feriados liberados:</b> as aulas de sábado, domingo e feriados estão incluídas em todos os planos, em qualquer modalidade.</p>
@@ -493,20 +524,21 @@ footer img{height:28px;width:auto;opacity:.85}
     <span class="tag rev">Nosso espaço</span>
     <h2 class="rev">Venha <em>conhecer</em> a Barbell.</h2>
     <p class="lead rev">Dois espaços de treino: no térreo, Hyrox e Cross Training; no andar de cima, o Studio de musculação funcional. Pode vir sem hora marcada, só para conhecer.</p>
+    <p class="arraste">Arraste para o lado →</p>
     <div class="galeria rev" id="galeria">
       <button class="g2" data-i="0"><img src="img/fachada.jpg" alt="Fachada da Barbell Fitness, Rua Vieira de Morais 1320" loading="lazy"></button>
-      <button class="w2" data-i="1"><img src="img/cross-parede.jpg" alt="Salão principal com a parede Barbell" loading="lazy"></button>
-      <button data-i="2"><img src="img/kettlebells.jpg" alt="Kettlebells" loading="lazy"></button>
-      <button data-i="3"><img src="img/studio-bikes.jpg" alt="Bikes do Studio" loading="lazy"></button>
-      <button class="w2" data-i="4"><img src="img/cross-fundo.jpg" alt="Área de Cross com argolas, medicine balls e barras" loading="lazy"></button>
-      <button data-i="5"><img src="img/studio.jpg" alt="Strength Studio" loading="lazy"></button>
-      <button data-i="6"><img src="img/recepcao-loja.jpg" alt="Recepção com loja de roupas e acessórios e sala de fisioterapia" loading="lazy"></button>
-      <button class="w2" data-i="7"><img src="img/kettlebells-entrada.jpg" alt="Entrada com kettlebells e área de treino" loading="lazy"></button>
-      <button data-i="8"><img src="img/cross-argolas.jpg" alt="Argolas e medicine balls" loading="lazy"></button>
-      <button data-i="9"><img src="img/vestiario-pia.jpg" alt="Vestiário" loading="lazy"></button>
-      <button class="w2" data-i="10"><img src="img/studio-escuro.jpg" alt="Strength Studio com iluminação de aula" loading="lazy"></button>
-      <button data-i="11"><img src="img/vestiario-box.jpg" alt="Chuveiros do vestiário" loading="lazy"></button>
-      <button data-i="12"><img src="img/hyrox-sled.jpg" alt="Pista de sled" loading="lazy"></button>
+      <button class="g2" data-i="1"><img src="img/hyrox-sled.jpg" alt="Pista de sled, remos e wall balls do Hyrox" loading="lazy"></button>
+      <button class="w2" data-i="2"><img src="img/cross-parede.jpg" alt="Salão principal com a parede Barbell" loading="lazy"></button>
+      <button data-i="3"><img src="img/kettlebells.jpg" alt="Kettlebells" loading="lazy"></button>
+      <button data-i="4"><img src="img/studio-bikes.jpg" alt="Bikes do Studio" loading="lazy"></button>
+      <button class="w2" data-i="5"><img src="img/cross-fundo.jpg" alt="Área de Cross com argolas, medicine balls e barras" loading="lazy"></button>
+      <button data-i="6"><img src="img/studio.jpg" alt="Strength Studio" loading="lazy"></button>
+      <button data-i="7"><img src="img/recepcao-loja.jpg" alt="Recepção com loja de roupas e acessórios e sala de fisioterapia" loading="lazy"></button>
+      <button class="w2" data-i="8"><img src="img/kettlebells-entrada.jpg" alt="Entrada com kettlebells e área de treino" loading="lazy"></button>
+      <button data-i="9"><img src="img/cross-argolas.jpg" alt="Argolas e medicine balls" loading="lazy"></button>
+      <button data-i="10"><img src="img/vestiario-pia.jpg" alt="Vestiário" loading="lazy"></button>
+      <button class="w2" data-i="11"><img src="img/studio-escuro.jpg" alt="Strength Studio com iluminação de aula" loading="lazy"></button>
+      <button data-i="12"><img src="img/vestiario-box.jpg" alt="Chuveiros do vestiário" loading="lazy"></button>
     </div>
   </div>
 </section>
@@ -522,10 +554,7 @@ footer img{height:28px;width:auto;opacity:.85}
       <button class="on" data-grade="fit">Cross e Hyrox</button>
       <button data-grade="studio">Strength Studio</button>
     </div>
-    <div class="subtabs" id="subtabs" hidden>
-      <button class="on" data-ver="atual">Grade atual (até 22/11)</button>
-      <button data-ver="nova">Nova grade (a partir de 23/11)</button>
-    </div>
+    <div class="aviso-grade" id="aviso-grade"><b>Novidade:</b> a partir de 23/11 começam as aulas de Hyrox durante a semana, e a grade de Cross e Hyrox muda. <a class="ouro" data-wpp data-msg="Olá! Quero saber dos novos horários de Hyrox." href="#">Saiba mais no WhatsApp →</a></div>
     <div class="grade-box cel rev" id="grade-box">
       <table class="grade" id="grade"></table>
       <div class="grade-cel"><div class="dias" id="dias"></div><div class="lista-dia" id="lista-dia"></div></div>
@@ -547,22 +576,30 @@ footer img{height:28px;width:auto;opacity:.85}
   <div class="wrap" style="position:relative">
     <span class="tag rev">Planos</span>
     <h2 class="rev">Planos <em>Barbell</em>.</h2>
-    <p class="lead rev">Sem taxa de matrícula. Escolha uma modalidade (Cross ou Hyrox) ou as duas. O Studio está incluído em todos os planos.</p>
-    <div class="tabs rev" id="tab-mod">
-      <button class="on" data-mod="1">Uma modalidade</button>
-      <button data-mod="2">Cross e Hyrox</button>
+    <p class="lead rev">Escolha seu plano com <b style="color:var(--tx)">uma modalidade</b> (Cross ou Hyrox) ou com <b style="color:var(--tx)">as duas</b>. Em qualquer opção, o Studio e as aulas de fim de semana já estão incluídos.</p>
+    <div class="pl-grid">
+      <div class="pl dest rev">
+        <div class="pl-top"><h3>Plano Black</h3><span class="chip">Mais escolhido</span></div>
+        <div class="desc">Frequência e horários livres</div>
+        <p class="pl-tx">Treine quantas vezes quiser, no horário que encaixar na sua semana. Ideal para quem quer treinar 3 vezes ou mais por semana.</p>
+        <div class="durs"><span>Trimestral</span><span>Semestral</span><span>Anual</span></div>
+      </div>
+      <div class="pl rev">
+        <div class="pl-top"><h3>Plano Budget</h3></div>
+        <div class="desc">8 aulas por mês</div>
+        <p class="pl-tx">Cerca de 2 treinos por semana, para quem quer manter a rotina com um plano mais econômico.</p>
+        <div class="durs"><span>Trimestral</span><span>Semestral</span><span>Anual</span></div>
+      </div>
     </div>
-    <div class="pl-grid" id="pl-grid"></div>
     <div class="cond-pg rev">
-      <div><b>PIX à vista</b>10% de desconto sobre a tabela</div>
-      <div><b>Cartão parcelado</b>5% de desconto sobre a tabela</div>
-      <div><b>Recorrência</b>PIX ou cartão recorrente, sem ocupar o limite</div>
-      <div><b>Férias</b>7 dias no trimestral, 15 no semestral, 30 no anual</div>
+      <div><b>Uma ou duas modalidades</b>Cross, Hyrox ou os dois, sempre com o Studio</div>
+      <div><b>Sem taxa de matrícula</b>em nenhum dos planos</div>
+      <div><b>Formas de pagamento</b>PIX, cartão parcelado ou recorrência</div>
+      <div><b>Férias</b>dias de pausa incluídos em todos os planos</div>
     </div>
-    <p class="nota rev" id="nota-planos">Não temos plano mensal. Para pagar mês a mês, o Trimestral pode ser pago na recorrência e cancelado a qualquer momento, sem taxa.</p>
     <div class="pl-acoes rev">
-      <a class="btn btn-ouro" id="link-venda" href="https://venda.nextfit.com.br/197c6a68-d285-47a6-aeb5-f6daf00d70f7/" target="_blank" rel="noopener">Contratar online</a>
-      <a class="btn btn-linha so-wpp" data-wpp data-msg="Olá! Quero saber mais sobre os planos da Barbell." href="#">Tirar dúvidas no WhatsApp</a>
+      <a class="btn btn-ouro" data-wpp data-msg="Olá! Quero agendar uma aula experimental na Barbell." href="#">Agendar aula</a>
+      <a class="btn btn-linha" data-wpp data-msg="Olá! Quero saber mais sobre os planos da Barbell." href="#">Tirar dúvidas sobre os planos</a>
     </div>
   </div>
 </section>
@@ -575,8 +612,7 @@ footer img{height:28px;width:auto;opacity:.85}
       <p>Treinos pensados para pessoas com mais idade: força, mobilidade e disposição para o dia a dia, com acompanhamento de perto. Nessa aula não é preciso usar app nem fazer check-in.</p>
       <div class="linha">
         <div><strong>Ter e Qui</strong><span>às 9h30</span></div>
-        <div><strong>R$ 299</strong><span>por mês, no mensal</span></div>
-        <div><strong>R$ 279</strong><span>por mês, no semestral</span></div>
+        <div><strong>Experimental grátis</strong><span>agendada pela nossa equipe</span></div>
       </div>
       <a class="btn so-wpp" data-wpp data-msg="Olá! Quero agendar uma aula experimental do Barbell Gold." href="#">Agendar experimental</a>
     </div>
@@ -585,10 +621,11 @@ footer img{height:28px;width:auto;opacity:.85}
       <h2 style="font-size:clamp(28px,3.6vw,38px)">MAPA <em>Barbell</em></h2>
       <p>Acompanhe sua evolução e composição corporal, e descubra onde dar mais atenção nos treinos e na recuperação.</p>
       <ol>
-        <li>Para quem tem plano ativo, a primeira avaliação é gratuita.</li>
-        <li>As seguintes custam R$ 150 cada.</li>
+        <li>Avaliação de composição corporal por bioimpedância.</li>
+        <li>Resultado explicado pela nossa equipe, para ajustar seus treinos.</li>
         <li>Recomendamos ao menos 3 avaliações, com cerca de 30 dias entre elas.</li>
       </ol>
+      <a class="btn btn-linha" style="margin-top:26px" data-wpp data-msg="Olá! Quero saber mais sobre o MAPA Barbell." href="#">Quero fazer o MAPA</a>
     </div>
   </div>
 </section>
@@ -600,12 +637,11 @@ footer img{height:28px;width:auto;opacity:.85}
     <p class="lead rev">Escolha a modalidade e o horário que encaixam na sua rotina. Não precisa de experiência.</p>
     <div class="passos">
       <div class="passo rev"><b>1</b><h3>Escolha o horário</h3><p>Qualquer aula de segunda a sexta (exceto feriados), em qualquer modalidade.</p></div>
-      <div class="passo rev"><b>2</b><h3>Agende online</h3><p>Pelo link de agendamento. Você recebe a confirmação e um lembrete antes da aula.</p></div>
+      <div class="passo rev"><b>2</b><h3>Chame no WhatsApp</h3><p>A gente confirma o horário com você e manda um lembrete antes da aula.</p></div>
       <div class="passo rev"><b>3</b><h3>Venha treinar</h3><p>Chegue uns minutinhos antes, com roupa de treino e garrafinha. O professor cuida do resto.</p></div>
     </div>
     <div class="acoes rev">
-      <a class="btn btn-ouro" href="https://agendamento.nextfit.com.br/3c9ee282-4a6b-44c1-9368-c264b54da9b9" target="_blank" rel="noopener">Agendar aula grátis</a>
-      <a class="btn btn-linha so-wpp" data-wpp data-msg="Olá! Quero agendar uma aula experimental na Barbell." href="#">Prefiro pelo WhatsApp</a>
+      <a class="btn btn-ouro" data-wpp data-msg="Olá! Quero agendar uma aula experimental na Barbell." href="#">Agendar aula grátis no WhatsApp</a>
     </div>
     <small class="rev">Uma aula experimental gratuita por pessoa.</small>
   </div>
@@ -627,6 +663,7 @@ footer img{height:28px;width:auto;opacity:.85}
       <details class="rev"><summary>Abre no fim de semana?</summary><p>Sim. Sábado das 9h às 12h e domingo das 9h30 às 11h30, com aulões incluídos em todos os planos.</p></details>
       <details class="rev"><summary>Aceitam TotalPass?</summary><p>Sim, a partir do plano TP5. Alunos com plano direto podem agendar as aulas com 25 horas de antecedência; pelo TotalPass, a partir de 12 horas antes.</p></details>
       <details class="rev"><summary>Tem taxa de matrícula?</summary><p>Não.</p></details>
+      <details class="rev"><summary>Como agendo a aula experimental?</summary><p>É só chamar a gente no WhatsApp: você escolhe a modalidade e o horário, e a equipe confirma e te manda um lembrete antes da aula. A experimental é gratuita e vale de segunda a sexta, exceto feriados.</p></details>
       <details class="rev"><summary>Tem estacionamento?</summary><p>Não temos estacionamento próprio, mas é fácil achar vaga na rua. Se preferir, há um estacionamento pago no imóvel colado à academia.</p></details>
       <details class="rev"><summary>Tem chuveiro?</summary><p>Sim. Temos vestiários completos com chuveiro e alugamos toalha.</p></details>
     </div>
@@ -637,7 +674,7 @@ footer img{height:28px;width:auto;opacity:.85}
   <div class="wrap">
     <span class="tag rev">Onde estamos</span>
     <h2 class="rev">Barbell Fitness & Studio · <em>Campo Belo</em></h2>
-    <p class="lead rev">Agende sua experimental em um clique, tire suas dúvidas pelo WhatsApp ou venha sem hora marcada, só para conhecer o nosso espaço.</p>
+    <p class="lead rev">Agende sua experimental e tire suas dúvidas pelo WhatsApp ou venha sem hora marcada, só para conhecer o nosso espaço.</p>
     <div class="ct-grid">
       <div class="ct-info rev">
         <div><small>Endereço</small><p>Rua Vieira de Morais, 1320<br>Campo Belo, São Paulo (SP) · CEP 04617-004</p><a class="u" href="https://www.google.com/maps/search/?api=1&query=Rua+Vieira+de+Morais+1320+Campo+Belo+S%C3%A3o+Paulo" target="_blank" rel="noopener">Abrir no Maps →</a></div>
@@ -659,7 +696,7 @@ footer img{height:28px;width:auto;opacity:.85}
       <img src="img/logo.png" alt="Barbell Fitness" width="440" height="113">
       <div class="htc">HYROX<span>TRAINING CLUB</span></div>
       <div style="color:#cfcac0;font-size:14px">Rua Vieira de Morais, 1320 · Campo Belo, São Paulo (SP)<br><span class="so-wpp">(11) 91672-6616</span></div>
-      <a class="btn btn-linha cta" href="https://agendamento.nextfit.com.br/3c9ee282-4a6b-44c1-9368-c264b54da9b9" target="_blank" rel="noopener">Agendar minha primeira experiência</a>
+      <a class="btn btn-linha cta" data-wpp data-msg="Olá! Quero agendar uma aula experimental na Barbell." href="#">Agendar minha primeira experiência</a>
     </div>
     <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
       <span>© <span id="ano">2026</span> The Barbell Fitness · Todos os direitos reservados.<br>THE BARBELL FITNESS LTDA · CNPJ 46.841.770/0001-68</span>
@@ -680,13 +717,7 @@ const CFG = {
   facebook: "",            // link completo da página. Vazio esconde.
   msgPadrao: "Olá! Vim pelo site da Barbell e quero saber mais.",
   promoFim: "2026-11-20",  // último dia da Black Barbell
-  novaGrade: "2026-11-23", // a partir deste dia mostra só a nova grade
-  vendaPromo: "https://venda.nextfit.com.br/4bff63f1-9ddf-4f35-bbf5-939648994ef1/",
-  vendaNormal: "https://venda.nextfit.com.br/197c6a68-d285-47a6-aeb5-f6daf00d70f7/"
-};
-const PRECOS = { // valor por mês
-  black:  { anual:[379,419], semestral:[399,449], trimestral:[419,489] },
-  budget: { anual:[249,299], semestral:[279,339], trimestral:[309,369] }
+  novaGrade: "2026-11-23"  // a partir deste dia mostra a nova grade e some o aviso
 };
 const GRADES = {
   atual: {
@@ -737,7 +768,6 @@ const GRADES = {
 const hoje = (()=>{const d=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Sao_Paulo"}));return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")})();
 const emPromo = hoje >= "2026-11-01" && hoje <= CFG.promoFim;
 const gradeNova = hoje >= CFG.novaGrade;
-const brl = v => v.toLocaleString("pt-BR");
 
 /* WhatsApp e Instagram */
 if (!CFG.whatsapp) document.body.classList.add("sem-wpp");
@@ -752,42 +782,7 @@ if (CFG.whatsapp){const n=CFG.whatsapp.replace(/^55/,"");document.getElementById
 document.getElementById("ano").textContent=hoje.slice(0,4);
 
 /* Promo */
-if (emPromo){
-  document.getElementById("promo").hidden=false;
-  document.getElementById("link-venda").href=CFG.vendaPromo;
-  document.getElementById("nota-planos").textContent="Na Black Barbell o pagamento é à vista ou parcelado no cartão, e os descontos de PIX e cartão não se somam à promoção. Bônus para os 10 primeiros planos anuais ou semestrais: grip Skyhill e camiseta exclusiva Barbell Hyrox.";
-} else { document.getElementById("link-venda").href=CFG.vendaNormal; }
-
-/* Planos */
-let mod=1;
-function renderPlanos(){
-  const parc={anual:"12x no cartão",semestral:"6x no cartão",trimestral:"3x no cartão"};
-  const nomes={anual:"Anual",semestral:"Semestral",trimestral:"Trimestral"};
-  const card=(k,tit,desc,dest)=>{
-    let h=`<div class="pl${dest?" dest":""}"><div class="pl-top"><h3>Plano ${tit}</h3>${dest?'<span class="chip">Mais escolhido</span>':""}</div><div class="desc">${desc}</div><div class="dur">`;
-    for(const d of ["anual","semestral","trimestral"]){
-      const [um,dois]=PRECOS[k][d];
-      let vl;
-      if(mod===2 && emPromo) vl=`<s>R$ ${brl(dois)}/mês</s><strong>${brl(um)}<small>/mês</small></strong>`;
-      else vl=`<strong>${brl(mod===1?um:dois)}<small>/mês</small></strong>`;
-      h+=`<div><span class="nm">${nomes[d]}<small>${parc[d]}</small></span><span class="vl">${vl}</span></div>`;
-    }
-    return h+"</div></div>";
-  };
-  document.getElementById("pl-grid").innerHTML =
-    card("black","Black","Frequência e horários livres",true) +
-    card("budget","Budget","8 aulas por mês",false);
-  if(emPromo && mod===2) document.querySelector("#pl-grid .pl.dest .chip").textContent="Black Barbell";
-}
-document.querySelectorAll("#tab-mod button").forEach(b=>b.onclick=()=>{
-  document.querySelectorAll("#tab-mod button").forEach(x=>x.classList.toggle("on",x===b));
-  mod=+b.dataset.mod; renderPlanos();
-});
-if(emPromo){ // na promo, destaca Cross e Hyrox
-  mod=2; document.querySelectorAll("#tab-mod button").forEach(x=>x.classList.toggle("on",x.dataset.mod==="2"));
-  document.querySelector('#tab-mod [data-mod="2"]').textContent="Cross e Hyrox · Black Barbell";
-}
-renderPlanos();
+if (emPromo) document.getElementById("promo").hidden=false;
 
 /* Grade */
 let tipo="fit", ver=gradeNova?"nova":"atual", diaSel=0;
@@ -802,7 +797,6 @@ function renderGrade(){
   document.getElementById("grade").innerHTML=h+"</tbody>";
   document.getElementById("fds").innerHTML=g.fds;
   document.getElementById("legenda").innerHTML=g.leg;
-  document.getElementById("subtabs").hidden = tipo==="studio" || gradeNova;
   if(diaSel>=g.dias.length) diaSel=0;
   document.getElementById("dias").innerHTML=g.dias.map((d,i)=>`<button class="${i===diaSel?"on":""}" data-dia="${i}">${d}</button>`).join("");
   const itens=g.horas.map((hr,i)=>[hr,g.aulas[i][diaSel]]).filter(x=>x[1]);
@@ -813,10 +807,7 @@ document.querySelectorAll("[data-grade]").forEach(b=>b.onclick=()=>{
   document.querySelectorAll("[data-grade]").forEach(x=>x.classList.toggle("on",x===b));
   tipo=b.dataset.grade; renderGrade();
 });
-document.querySelectorAll("[data-ver]").forEach(b=>b.onclick=()=>{
-  document.querySelectorAll("[data-ver]").forEach(x=>x.classList.toggle("on",x===b));
-  ver=b.dataset.ver; renderGrade();
-});
+if (gradeNova) document.getElementById("aviso-grade").remove();
 {const dw=new Date(new Date().toLocaleString("en-US",{timeZone:"America/Sao_Paulo"})).getDay(); if(dw>=1&&dw<=5) diaSel=dw-1;}
 renderGrade();
 
