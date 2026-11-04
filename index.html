@@ -411,7 +411,7 @@ footer img{height:28px;width:auto;opacity:.85}
     <div class="hero-grid">
     <div class="hero-in">
       <div class="selo"><b></b>HYROX Training Club oficial</div>
-      <h1>Treine Hyrox, Cross e Musculação<span>em um só lugar.</span></h1>
+      <h1>Treine Hyrox, Cross e Musculação <span>em um só lugar.</span></h1>
       <p>Cross Training, Hyrox e Studio de Musculação Funcional no Campo Belo. Turmas pequenas, aulas de menos de uma hora e uma equipe que acompanha você de perto, do primeiro treino em diante.</p>
       <div class="acoes">
         <a class="btn btn-ouro" data-wpp data-msg="Olá! Quero agendar uma aula experimental na Barbell." href="#">Agendar aula grátis</a>
@@ -715,6 +715,9 @@ const CFG = {
   whatsapp: "5511916726616", // só números, com 55 e DDD. Vazio esconde os botões de WhatsApp.
   instagram: "https://www.instagram.com/thebar.bell/", // link completo do perfil, ex.: "https://instagram.com/..." Vazio esconde.
   facebook: "",            // link completo da página. Vazio esconde.
+  // Google Ads: conversão "Clique no WhatsApp (site)". Cole aqui o "send_to" do snippet de evento,
+  // no formato "AW-123456789/AbCdEfGh". Vazio = sem rastreamento.
+  adsConversao: "",
   msgPadrao: "Olá! Vim pelo site da Barbell e quero saber mais.",
   promoFim: "2026-11-20",  // último dia da Black Barbell
   novaGrade: "2026-11-23"  // a partir deste dia mostra a nova grade e some o aviso
@@ -823,8 +826,17 @@ renderGrade();
 
 /* Endereços do site antigo (caso o redirecionamento do servidor não pegue) */
 {const p=decodeURIComponent(location.pathname).toLowerCase().replace(/\/+$/,"");
- const mapa={"/nosso-espaço":"espaco","/nosso-espaco":"espaco","/contato-1":"contato","/contato":"contato"};
+ const mapa={"/nosso-espaço":"espaco","/nosso-espaço-1":"espaco","/nosso-espaco":"espaco","/contato-1":"contato","/contato":"contato","/aula-gratis":"experimental","/modalidades":"modalidades","/horarios":"horarios","/planos":"planos","/gold":"gold"};
  if(mapa[p]){history.replaceState(null,"","/#"+mapa[p]);addEventListener("load",()=>document.getElementById(mapa[p]).scrollIntoView());}}
+
+/* Google Ads: conta o clique no WhatsApp como conversão */
+if (CFG.adsConversao){
+  const id=CFG.adsConversao.split("/")[0];
+  const sc=document.createElement("script");sc.async=true;sc.src="https://www.googletagmanager.com/gtag/js?id="+id;document.head.appendChild(sc);
+  window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
+  gtag("js",new Date());gtag("config",id);
+  document.querySelectorAll("[data-wpp]").forEach(a=>a.addEventListener("click",()=>gtag("event","conversion",{send_to:CFG.adsConversao})));
+}
 
 /* Menu e header */
 const hd=document.getElementById("topo"), menu=document.getElementById("menu"), bg=document.getElementById("burger");
