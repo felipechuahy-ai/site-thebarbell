@@ -235,10 +235,11 @@ table.grade{width:100%;border-collapse:separate;border-spacing:6px;min-width:600
 .grade td{text-align:center;font:700 19px/1 "Barlow Condensed";letter-spacing:.03em;padding:12px 4px;text-transform:uppercase}
 .grade td.h{color:var(--ouro);font-size:22px;text-align:left;width:70px}
 .grade td.x{color:#4a4a4a}
-.c-metcon{color:var(--metcon)}.c-strength{color:var(--strength)}.c-engine{color:var(--engine)}.c-lpo{color:var(--lpo)}.c-hyrox{color:var(--hyrox)}
+.c-metcon{color:var(--metcon)}.c-cross{color:var(--metcon)}.c-strength{color:var(--strength)}.c-engine{color:var(--engine)}.c-lpo{color:var(--lpo)}.c-hyrox{color:var(--hyrox)}
 .c-build{color:var(--strength)}.c-stamina{color:var(--engine)}.c-gac{color:var(--lpo)}.c-sprint{color:var(--hyrox)}
 .fds{display:flex;gap:28px;flex-wrap:wrap;margin-top:18px;padding-top:18px;border-top:1px solid var(--line);font:700 20px/1.3 "Barlow Condensed";letter-spacing:.03em}
 .fds span{color:var(--ouro)}
+.fds .fds-obs{flex-basis:100%;font:italic 400 15px/1.4 "Barlow",sans-serif;letter-spacing:0;color:var(--muted, #9a958c)}
 .legenda{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 24px;margin-top:18px;font-size:14px;color:var(--mut)}
 .legenda b{font:700 17px/1 "Barlow Condensed";letter-spacing:.04em;margin-right:6px}
 .func{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
@@ -561,7 +562,7 @@ footer img{height:28px;width:auto;opacity:.85}
         <span class="num">01</span>
         <h3>Cross Training</h3>
         <div class="sub">Condicionamento e força, de forma geral</div>
-        <p>Nossa modalidade principal. Treinos intensos que combinam condicionamento metabólico (Metcon) e técnica. Para quem quer evoluir, perder peso ou ganhar força.</p>
+        <p>Nossa modalidade principal. Treinos intensos que combinam condicionamento e técnica. Para quem quer evoluir, perder peso ou ganhar força.</p>
         <ul><li>Intensidade <b>Alta</b></li><li>Por turma <b>até 14 alunos</b></li></ul>
       </article>
       <article class="mod rev">
@@ -810,15 +811,15 @@ const GRADES = {
     horas:["06:00","07:00","08:00","12:30","18:00","19:00","20:00"],
     dias:["SEG","TER","QUA","QUI","SEX"],
     aulas:[
-      ["Hyrox","Metcon","Hyrox","Metcon","Metcon"],
-      ["Hyrox","Metcon","Hyrox","Metcon","Metcon"],
-      ["Hyrox","Metcon","Hyrox","Metcon","Metcon"],
-      ["Hyrox","Metcon","Hyrox","Metcon","Hyrox"],
-      ["Metcon","Hyrox","Metcon","Hyrox","Hyrox"],
-      ["Metcon","Hyrox","Metcon","Hyrox","Hyrox"],
-      ["Metcon","Hyrox","Metcon","Hyrox",""]],
-    fds:'<div><span>Sábados · Metcon</span> 09:00 / 10:00 / 11:00</div><div><span>Domingos · Hyrox</span> 09:30 / 10:30</div>',
-    leg:'<div><b class="c-metcon">METCON</b>aula de Cross, técnica e prática</div><div><b class="c-hyrox">HYROX</b>corrida e estações da prova</div>'
+      ["Hyrox","Cross","Hyrox","Cross","Hyrox"],
+      ["Hyrox","Cross","Hyrox","Cross","LPO"],
+      ["Hyrox","Cross","Hyrox","Cross","Hyrox"],
+      ["Hyrox","Cross","Hyrox","Cross","Cross"],
+      ["Cross","Hyrox","Cross","Hyrox","Cross"],
+      ["Cross","Hyrox","Cross","Hyrox","Cross"],
+      ["Cross","Hyrox","Cross","Hyrox",""]],
+    fds:'<div><span>Sábados · Aulão Cross</span> 09:00 / 10:00 / 11:00</div><div><span>Domingos · Aulão Hyrox</span> 09:30 / 10:30</div><div class="fds-obs">Aulas aos sábados, domingos e feriados liberadas para todas as modalidades.</div>',
+    leg:'<div><b class="c-cross">CROSS</b>aula tradicional de Cross Training, técnica e prática</div><div><b class="c-hyrox">HYROX</b>corrida e estações de força e cardio da prova</div><div><b class="c-lpo">LPO</b>movimentos do levantamento de peso olímpico</div>'
   },
   studio: {
     horas:["06:00","07:00","08:00","09:00","10:00","12:30","19:00"],
